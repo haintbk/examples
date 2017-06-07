@@ -8,11 +8,10 @@ import numpy as np
 import tensorflow as tf
 import cifar10
 
-warnings.filterwarnings('ignore')
 
 FLAGS = tf.app.flags.FLAGS
 
-tf.app.flags.DEFINE_string("checkpoint_dir", "/tmp/cifar10_train",
+tf.app.flags.DEFINE_string("checkpoint_dir", "tmp/cifar10_train",
                             """Directory where to read model checkpoints.""")
 
 IMAGE_SIZE = 24
@@ -44,7 +43,7 @@ def evaluate_image(filename):
                 return
 
             values, indices = sess.run(top_k_pred)
-            print LABEL_NAMES[indices[0][0]], values[0][0]
+            print indices[0][0], values[0][0]
 
 def img_read(filename):
     if not tf.gfile.Exists(filename):
@@ -71,3 +70,4 @@ def main(argv=None):
 
 if __name__ == '__main__':
   tf.app.run()
+
